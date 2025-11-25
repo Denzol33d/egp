@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Karim Saeed Predictor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --orange:#ff7a00; --green:#0cb86a; --blue:#1b57f2;
+      --bg:#0b0f14; --card:#121826; --muted:#9aa4b2;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:Tajawal, sans-serif; color:#e9edf3;
+      background:#0b0f14;
+      display:flex; align-items:center; justify-content:center; padding:16px;
+    }
+    .wrap{ width:min(480px, 100%); }
+    .card{
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(6px);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:20px; padding:24px 20px;
+      box-shadow:0 18px 50px rgba(0,0,0,.45);
+      animation: pop .6s ease;
+    }
+    @keyframes pop{ from{transform:translateY(8px); opacity:0} to{transform:none; opacity:1} }
+    .flag{width:68px; display:block; margin:0 auto 10px}
+    .title{ text-align:center; font-weight:800; font-size:26px; margin-bottom:6px }
+    .subtitle{ text-align:center; color:var(--muted); font-size:14px; margin-bottom:14px }
+    .badges{display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-bottom:14px}
+    .badge{
+      font-size:11px; background:#14202b; padding:6px 10px;
+      color:#d8dee9; border-radius:999px; border:1px solid rgba(255,255,255,.06)
+    }
+    label.block{display:block; font-weight:700; margin-top:12px; margin-bottom:8px}
+    .games{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+    .game{
+      display:flex; align-items:center; gap:10px; padding:12px;
+      background:#0f1720; border-radius:12px; border:1px solid rgba(255,255,255,.06);
+      cursor:pointer; transition:.12s ease;
+    }
+    .game:hover{ transform:translateY(-2px); border-color:rgba(255,255,255,.14) }
+    .input{
+      width:100%; background:#111827; border-radius:12px;
+      padding:12px 14px; border:1px solid rgba(255,255,255,.08);
+      color:#e9edf3; font-size:15px; outline:none;
+    }
+    .hint{font-size:12px; color:var(--muted); margin-top:6px}
+    .warn{display:none; color:#ff6767; font-size:13px; margin-top:8px}
+    .btn{
+      margin-top:16px; width:100%; border:0; border-radius:14px; padding:14px 16px;
+      font-weight:800; font-size:16px; cursor:pointer; color:#071018;
+      background:linear-gradient(90deg, var(--orange), var(--green));
+      box-shadow:0 10px 30px rgba(255,122,0,.2);
+    }
+    .btn:disabled{opacity:.5; cursor:not-allowed}
+    .progress{display:none; height:10px; background:#0c1420; border-radius:999px; overflow:hidden; margin-top:14px}
+    .bar{height:100%; width:0; background:linear-gradient(90deg, var(--orange), var(--green)); animation: fill 2.4s linear forwards}
+    @keyframes fill{ from{width:0} to{width:100%} }
+    .cta{
+      margin-top:18px; display:block; text-align:center; font-weight:700;
+      background:linear-gradient(90deg,#1b57f2,#06b6d4);
+      padding:12px 14px; border-radius:12px; color:#fff; text-decoration:none;
+    }
+    .meta{display:flex; justify-content:space-between; color:var(--muted); margin-top:14px; font-size:13px}
+    .footer{text-align:center; margin-top:12px; color:#a6b0be; font-size:12px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      
+      <img src="https://flagcdn.com/w320/eg.png" class="flag" alt="علم مصر"/>
+
+      <div class="title">Karim Saeed Predictor</div>
+      <div class="subtitle">إشارات سريعة • مخصص لمصر • EGP</div>
+
+      <div class="badges">
+        <div class="badge">🔒 آمن</div>
+        <div class="badge">✅ مُوثَّق</div>
+        <div class="badge">🇪🇬 دعم مصري</div>
+      </div>
+
+      <label class="block">اختر لعبتك</label>
+      <div class="games">
+        <label class="game"><input type="radio" name="game" checked> 💥 Crash</label>
+        <label class="game"><input type="radio" name="game"> ✈️ Aviator</label>
+        <label class="game"><input type="radio" name="game"> 💎 Mines</label>
+        <label class="game"><input type="radio" name="game"> 🐔 Chicken Road</label>
+        <label class="game"><input type="radio" name="game"> ⚽ Penalty</label>
+      </div>
+
+      <label class="block" for="acc">معرّف الحساب</label>
+      <input id="acc" class="input" placeholder="مثال: 0123456789" maxlength="10" inputmode="numeric" />
+      <div class="hint">أدخل 10 أرقام • العملة: EGP</div>
+      <div class="warn" id="warn">يرجى إدخال رقم صالح من 10 خانات.</div>
+
+      <button class="btn" id="start" disabled>ابدأ</button>
+      <div class="progress" id="progress"><div class="bar"></div></div>
+
+      <a class="cta" id="depositLink" href="https://reffpa.com/L?tag=d_4835432m_97c__[]general[]_d173877_l227132_adaptive_banner&site=4835432&ad=97&r=registration" target="_blank">💳 قم بالإيداع</a>
+
+      <div class="meta">
+        <div>🔵 متصلون الآن: <span id="online">142</span></div>
+        <div>⏳ ينتهي الوصول خلال <span id="countdown">05:00</span></div>
+      </div>
+
+      <div class="footer">صُنع بواسطة <strong>Karim Saeed</strong> • مصر</div>
+
+    </div>
+  </div>
+
+  <script>
+    let left = 300; 
+    const cd = document.getElementById('countdown');
+    setInterval(()=>{
+      if(left>0) left--;
+      const m = String(Math.floor(left/60)).padStart(2,'0');
+      const s = String(left%60).padStart(2,'0');
+      cd.textContent = `${m}:${s}`;
+    },1000);
+
+    const onlineEl = document.getElementById('online');
+    setInterval(()=>{ 
+      const b = 140; 
+      const j = Math.floor(Math.random()*10)-4; 
+      onlineEl.textContent = b + j; 
+    }, 2500);
+
+    const acc = document.getElementById('acc');
+    const start = document.getElementById('start');
+    const warn = document.getElementById('warn');
+
+    acc.addEventListener('input', ()=>{
+      const ok = /^\d{10}$/.test(acc.value);
+      start.disabled = !ok;
+      warn.style.display = ok ? 'none':'block';
+    });
+
+    const progress = document.getElementById('progress');
+
+    start.addEventListener('click', ()=>{
+      progress.style.display='block';
+      const bar = progress.querySelector('.bar');
+      bar.style.animation='none'; bar.offsetHeight;
+      bar.style.animation='fill 2.4s linear forwards';
+
+      setTimeout(()=>{
+        alert(`❌ الرصيد غير كافٍ.
+
+رصيد حسابك غير كافٍ للاستمرار.
+يرجى شحن الرصيد ثم المحاولة مرة أخرى.
+
+المبلغ المطلوب: 244 EGP
+
+استخدم رمز الخصم: MA874`);
+      }, 2400);
+    });
+  </script>
+</body>
+</html>
